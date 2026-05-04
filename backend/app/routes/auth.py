@@ -1,5 +1,4 @@
 import os
-
 from fastapi import APIRouter, HTTPException
 from app.schemas.user import UserCreate, UserLogin
 from app.database import get_user, create_user
@@ -45,7 +44,7 @@ def verify_password(plain_password, hashed_password):
      return pwd_context.verify(plain_password, hashed_password)
 
 def create_access_token(data: dict):
-     # Implement token creation logic here (e.g., using JWT)
+     # Tekenize access token with expiration time
      to_encode = data.copy()
      expire = datetime.now(timezone.utc) + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
      to_encode.update({"exp": expire})
