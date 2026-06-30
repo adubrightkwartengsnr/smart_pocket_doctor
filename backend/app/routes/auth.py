@@ -1,7 +1,7 @@
 import os
 from fastapi import APIRouter, HTTPException
 from app.schemas.user import UserCreate, UserLogin
-from app.database import get_user, create_user
+from app.core.database import get_user, create_user
 from passlib.context import CryptContext
 from datetime import datetime, timedelta,timezone
 from dotenv import load_dotenv
