@@ -61,3 +61,6 @@ async def login(user: UserLogin):
      token = create_access_token({"sub": user.username})
      
      return {"access_token": token, "token_type": "bearer"}
+
+def get_current_user():
+     pass

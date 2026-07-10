@@ -14,10 +14,11 @@ from fastapi import FastAPI,UploadFile, File, Depends, HTTPException, status, Ba
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 from contextlib import asynccontextmanager
-from app.routes import chat, auth # triage, documents, appointments
+from app.routes import chat # triage, documents, appointments
 # from app.core.config import settings
 from app.core.rag import init_rag
 from app.core.database import init_db
+from backend.app.core import auth
 
 
 
