@@ -110,6 +110,6 @@ class AppointmentOut(BaseModel):
     appointment_time: Optional[str]
     location: Optional[str]
     notes: Optional[str]
-    create_at: datetime = Field(default_factory=datetime.now(UTC), description="Timestamp of the appointment creation")
+    created_at: datetime = Field(default_factory=datetime.now(UTC), description="Timestamp of the appointment creation")
 
 
