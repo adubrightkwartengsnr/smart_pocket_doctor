@@ -21,8 +21,8 @@ _EMERGENCY_PATTERNS = [ r"\bchest\s+pain\b", r"\bcan'?t\s+breathe\b", r"\bshortn
     r"\banaphyla\b", r"\bheart\s+attack\b", r"\bcollapsed\b", r"\bnot\s+breathing\b"]
 
 _URGENCY_PATTERNS = [ r"\bhigh\s+fever\b", r"\bfever\s+above\s+3[89]\b", r"\bvomiting\s+blood\b",
-    r"\bblood\s+in\s+(stool|urine)\b", r"\bsevere\s+headache\b", r"\bsudden\s+vision\b", r"\bparalys\b", r"\bmeningit\b",
-    r"\bappendicit\b", r"\bjaundic\b", r"\bhigh\s+blood\s+pressure\b", r"\bchest\s+discomfort\b", r"\bheart\s+palpitations\b",]
+    r"\bblood\s+in\s+(stool|urine)\b", r"\bsevere\s+headache\b", r"\bsudden\s+vision\b", r"\bparalyse\b", r"\bmeningitis\b",
+    r"\bappendicite\b", r"\bjaundice\b", r"\bhigh\s+blood\s+pressure\b", r"\bchest\s+discomfort\b", r"\bheart\s+palpitations\b",]
 
 _LEVEL_META = {
     TriageLevel.EMERGENCY : {
