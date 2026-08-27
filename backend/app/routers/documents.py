@@ -19,7 +19,7 @@ from typing import List
 from fastapi import APIRouter, Depends, HTTPException, UploadFile, File, BackgroundTasks
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_core.documents import Document as LCDocument
-from app.schemas import DocumentMetaData, DocumentListResponse
+from app.schemas.schemas import DocumentMetaData, DocumentListResponse
 from app.core.rag import get_rag_retriever
 from app.core.auth import get_current_user
 from app.services.document_parser import parse_document

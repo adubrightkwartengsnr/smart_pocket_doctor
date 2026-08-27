@@ -4,8 +4,6 @@ from datetime import datetime, timezone
 from typing import List
 import uuid
 from fastapi import APIRouter, Depends, HTTPException
-from app.schemas.chat_schema import ChatRequest
-from langchain_core.messages import HumanMessage, AIMessage
 from app.schemas.schemas import MessageIn, MessageOut, ConversationHistory, ConversationMessage, SourceDocument, TriageSummary
 from app.core.rag import get_rag_chain, get_rag_retriever
 from app.services.session_store import SessionStore 

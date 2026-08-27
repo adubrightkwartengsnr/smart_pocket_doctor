@@ -45,7 +45,15 @@ def get_user(username: str) -> Optional[dict]:
                        (username,)).fetchone()
     conn.close()
     if row:
-        return {"username": row["username"], "full_name": row["full_name"], "email":row["email"], "hashed_password" : row["hashed_password"], "date_of_birth": row["date_of_birth"], "location":row["location"], "created_at": row["created_at"]}
+        return {
+            "id": row["user_id"],
+            "username": row["username"], 
+            "full_name": row["full_name"],
+            "email":row["email"],
+            "hashed_password" : row["hashed_password"], 
+            "date_of_birth": row["date_of_birth"], 
+            "location":row["location"], 
+            "created_at": row["created_at"]}
     return None
 
     
