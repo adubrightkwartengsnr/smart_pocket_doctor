@@ -10,27 +10,22 @@ FastAPI backend that wraps existing RAG chain with:
 """
 
 
-from fastapi import FastAPI,UploadFile, File, Depends, HTTPException, status, BackgroundTasks
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 from contextlib import asynccontextmanager
-from app.routes import chat # triage, documents, appointments
-# from app.core.config import settings
+from app.routers import chat, triage, documents, appointments
+from app.core.config import settings
 from app.core.rag import init_rag
 from app.core.database import init_db
-from backend.app.core import auth
-
-
-
 
 
 @asynccontextmanager
 async def lifespan(app:FastAPI):
     # Initialize the database connection
-    await init_db()
+    init_db()
     init_rag()
     yield
-
 
 
 # Initialize FastAPI app
@@ -54,8 +49,8 @@ app.include_router(triage.router, prefix = "/api/v1/triage", tags = ["Triage"])
 app.include_router(documents.router, prefix = "/api/v1/documents", tags = ["Documents"])
 app.include_router(appointments.router, prefix = "/api/v1/appointments", tags = ["Appointments"])
 
-@app.get_health("/health")
-async def health():
+@app.get("/smart_doctor")
+async def smart_doctor_api():
     return {"status": "ok", "message": "Smart Doctor API is running"}
 
 

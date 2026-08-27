@@ -81,8 +81,7 @@ class TriageResponse(BaseModel):
     traiage_summary: TriageSummary
 
 ### Documents
-
-class DocumentMetadata(BaseModel):
+class DocumentMetaData(BaseModel):
     document_id: str
     filename: str
     doctype: str  #lab results, prescription, discharge summary, imaging report, etc.
@@ -91,7 +90,7 @@ class DocumentMetadata(BaseModel):
     indexed: bool
 
 class DocumentListResponse(BaseModel):
-    documents: List[DocumentMetadata]
+    documents: List[DocumentMetaData]
 
 
 

@@ -12,23 +12,20 @@ import uuid
 from datetime import datetime, timedelta, timezone
 from typing import List
 from fastapi import APIRouter, Depends, HTTPException
-from app.schemas import AppointmentIn, AppointmentOut, AppointmentStatus, TriageLevel
+from app.schemas.schemas import AppointmentIn, AppointmentOut, AppointmentStatus, TriageLevel
 from app.core.auth import get_current_user
 
 router = APIRouter()
 
 # In-memory store — replace with your DB model
-_appointments = dict[str, list[dict]] = {}
+_appointments : dict[str, list[dict]] = {}
 # Urgency → auto-assign approximate slot (replace with real scheduling logic)
 
 _URGENCY_HOURS = {
     TriageLevel.EMERGENCY: 0,
     TriageLevel.URGENT: 24,
-    TriageLevel.SEMI_URGENT: 72,
-    TriageLevel.NON_URGENT: 168,
     TriageLevel.SELF_CARE: None,
 }
-
 
 #  request an appointment
 @router.post("/book", response_model=AppointmentOut, status_code=201)
@@ -43,6 +40,8 @@ async def book_appointment(body: AppointmentIn, current_user = Depends(get_curre
     appt_id = str(uuid.uuid4())
     now = datetime.now(timezone.utc)
 
+    urgency_hours = _URGENCY_HOURS.get(body.triage_level)
+    scheduled_time = now + timedelta(hours=urgency_hours) if urgency_hours is not None else None
     appointment = {
         "appointment_id":appt_id,
         "user_id": str(current_user.id),
@@ -51,7 +50,7 @@ async def book_appointment(body: AppointmentIn, current_user = Depends(get_curre
         "status": AppointmentStatus.PENDING,
         "doctor_name": None,
         "created_at": now,  
-        "scheduled_time": now + timedelta(hours=_URGENCY_HOURS[body.triage_level]),
+        "scheduled_time": scheduled_time,
         "location": None,
         "notes": body.notes
     }
